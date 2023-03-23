@@ -18,6 +18,17 @@ class Program
         var brigitte = new Person("brigitte", "turner");
         var christian = new Person("christian", "stackpole");
         var wesley = new Person("Wesley", "Baker");
+
+        Person[] persons = { kaylee, austin, priscilla, kenan, abbie, sam, luke,
+            gavin, tucker, avery, allison, savannah, brigitte, christian, wesley };
+
+        var personGroups = PersonGroup.GeneratePersonGroups(new List<Person>(persons), 3);
+
+        for(var index =0; index < personGroups.Count; index++)
+        {
+            Console.WriteLine( $"Group {index}: " + personGroups[index] );
+        }
+
     }
 }
 

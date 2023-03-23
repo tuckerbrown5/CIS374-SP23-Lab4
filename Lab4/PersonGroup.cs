@@ -46,11 +46,38 @@ namespace Lab4
             Persons.Sort();
         }
 
+        public override string ToString()
+        {
+            return "[" + String.Join(", ", Persons)+ "]";
+        }
+
+
         // TODO
         public static List<PersonGroup> GeneratePersonGroups(List<Person> persons, int distance)
         {
+            var personGroups = new List<PersonGroup>();
 
-            return null;
+            // This isn't correct code. 
+            // It's is just a sample of how to interact with the classes.
+            var group1 = new PersonGroup();
+            var group2 = new PersonGroup();
+
+            foreach (var person in persons)
+            {
+                if (person.FirstName.StartsWith("K"))
+                {
+                    group1.Persons.Add(person);
+                }
+                else
+                {
+                    group2.Persons.Add(person);
+                }
+            }
+
+            personGroups.Add(group1);
+            personGroups.Add(group2);
+
+            return personGroups;
         }
 
     }
