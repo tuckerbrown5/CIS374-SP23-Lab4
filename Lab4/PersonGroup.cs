@@ -18,6 +18,13 @@ namespace Lab4
 
         public int Count => Persons.Count;
 
+        // Added late
+        public void Add(Person person)
+        {
+            Persons.Add(person);
+        }
+
+
         public Person this[int i]
         {
             get
