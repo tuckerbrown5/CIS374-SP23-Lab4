@@ -14,7 +14,12 @@ namespace Lab4
         }
 
         // TODO
-        public char? EndingLetter { get; }
+        public char? EndingLetter {
+            get
+            {
+                return Persons[Count - 1].FirstName[Count - 1];
+            }
+        }
 
         public int Count => Persons.Count;
 
@@ -62,29 +67,35 @@ namespace Lab4
         // TODO
         public static List<PersonGroup> GeneratePersonGroups(List<Person> persons, int distance)
         {
-            var personGroups = new List<PersonGroup>();
+            List<PersonGroup> peoplesgroup = new List<PersonGroup>();
 
-            // This isn't correct code. 
-            // It's is just a sample of how to interact with the classes.
-            var group1 = new PersonGroup();
-            var group2 = new PersonGroup();
+            persons.Sort();
+
+            var newGroup = new PersonGroup();
 
             foreach (var person in persons)
             {
-                if (person.FirstName.StartsWith("K"))
+                if (newGroup.Count == 0)
                 {
-                    group1.Persons.Add(person);
+                    newGroup.Persons.Add(person);
+                }
+                else if (person.Distance(newGroup[0]) <= distance)
+                {
+                    newGroup.Persons.Add(person);
                 }
                 else
                 {
-                    group2.Persons.Add(person);
+                    peoplesgroup.Add(newGroup);
+
+                    var newerGroup = new PersonGroup();
+
+                    newGroup = newerGroup;
+
+                    newerGroup.Persons.Add(person);
                 }
             }
-
-            personGroups.Add(group1);
-            personGroups.Add(group2);
-
-            return personGroups;
+            return peoplesgroup;
+            
         }
 
     }
